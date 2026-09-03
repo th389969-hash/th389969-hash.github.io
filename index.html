@@ -255,7 +255,7 @@
             transition: all 0.25s ease;
         }
 
-        .theme-btn:hover {
+        .-btn:hover {
             background:
                 rgba(250, 204, 21, 0.08);
         }
@@ -643,6 +643,34 @@
 
             text-decoration: none;
         }
+        body.light-mode {
+            --bg: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-border: rgba(15, 23, 42, 0.10);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+        }
+
+        body.light-mode nav {
+            background: rgba(255, 255, 255, 0.90);
+            border-color: rgba(15, 23, 42, 0.10);
+        
+            box-shadow:
+                0 15px 35px rgba(15, 23, 42, 0.10),
+                0 0 35px rgba(56, 189, 248, 0.05);
+        }
+
+        body.light-mode .logo {
+            color: #0f172a;
+        }
+        
+        body.light-mode .service-btn {
+            color: #0f172a;
+        }
+        
+        body.light-mode .theme-btn {
+            color: #f59e0b;
+        }
 
         @media (max-width: 900px) {
 
@@ -687,7 +715,30 @@
     </style>
 
 </head>
+    
+<script>
+    const themeToggle = document.getElementById("themeToggle");
+    const themeIcon = document.getElementById("themeIcon");
 
+    themeToggle.addEventListener("click", function () {
+
+        document.body.classList.toggle("light-mode");
+
+        if (document.body.classList.contains("light-mode")) {
+
+            themeIcon.classList.remove("fa-moon");
+            themeIcon.classList.add("fa-sun");
+
+        } else {
+
+            themeIcon.classList.remove("fa-sun");
+            themeIcon.classList.add("fa-moon");
+
+        }
+
+    });
+</script>
+    
 <body>
 
     <div class="ambient-glow"></div>
@@ -738,8 +789,8 @@
                 Services
             </a>
 
-            <button class="theme-btn">
-                <i class="fa-regular fa-sun"></i>
+           <button class="theme-btn" id="themeToggle">
+                <i class="fa-regular fa-moon" id="themeIcon"></i>
             </button>
 
         </div>
