@@ -50,6 +50,8 @@
             line-height: 1.6;
 
             overflow-x: hidden;
+
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .ambient-glow {
@@ -126,7 +128,7 @@
             white-space: nowrap;
         }
 
-        .logo . {
+        .logo .dev {
             color: #38bdf8;
         }
 
@@ -255,7 +257,7 @@
             transition: all 0.25s ease;
         }
 
-        .-btn:hover {
+        .theme-btn:hover {
             background:
                 rgba(250, 204, 21, 0.08);
         }
@@ -672,6 +674,21 @@
             color: #f59e0b;
         }
 
+        body.light-mode .ambient-glow {
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(99, 102, 241, 0.10) 0%,
+                    transparent 45%
+                ),
+
+                radial-gradient(
+                    circle at 85% 70%,
+                    rgba(6, 182, 212, 0.10) 0%,
+                    transparent 45%
+                );
+        }
+
         @media (max-width: 900px) {
 
             nav {
@@ -715,29 +732,6 @@
     </style>
 
 </head>
-    
-<script>
-    const themeToggle = document.getElementById("themeToggle");
-    const themeIcon = document.getElementById("themeIcon");
-
-    themeToggle.addEventListener("click", function () {
-
-        document.body.classList.toggle("light-mode");
-
-        if (document.body.classList.contains("light-mode")) {
-
-            themeIcon.classList.remove("fa-moon");
-            themeIcon.classList.add("fa-sun");
-
-        } else {
-
-            themeIcon.classList.remove("fa-sun");
-            themeIcon.classList.add("fa-moon");
-
-        }
-
-    });
-</script>
     
 <body>
 
@@ -789,8 +783,8 @@
                 Services
             </a>
 
-           <button class="theme-btn" id="themeToggle">
-                <i class="fa-regular fa-moon" id="themeIcon"></i>
+           <button class="theme-btn" id="themeToggle" type="button">
+                <i class="fa-solid fa-moon" id="themeIcon"></i>
             </button>
 
         </div>
@@ -1074,6 +1068,32 @@
         </p>
 
     </footer>
+
+    <script>
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = document.getElementById("themeIcon");
+
+        const savedTheme = localStorage.getItem("theme");
+
+        if (savedTheme === "light") {
+            document.body.classList.add("light-mode");
+            themeIcon.className = "fa-solid fa-sun";
+        } else {
+            themeIcon.className = "fa-solid fa-moon";
+        }
+
+        themeToggle.addEventListener("click", () => {
+            const isLightMode = document.body.classList.toggle("light-mode");
+
+            if (isLightMode) {
+                themeIcon.className = "fa-solid fa-sun";
+                localStorage.setItem("theme", "light");
+            } else {
+                themeIcon.className = "fa-solid fa-moon";
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    </script>
 
 </body>
 
