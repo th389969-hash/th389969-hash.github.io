@@ -1,1100 +1,291 @@
 <!DOCTYPE html>
-<html lang="vi">
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Huynh Viet Thang | Portfolio</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-
-        :root {
-            --bg: #090d16;
-            --card-bg: rgba(22, 31, 48, 0.7);
-            --card-border: rgba(255, 255, 255, 0.08);
-
-            --primary: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.35);
-
-            --accent: #38bdf8;
-
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-
-            font-family: 'Plus Jakarta Sans', sans-serif;
-
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg);
-
-            color: var(--text-main);
-
-            line-height: 1.6;
-
-            overflow-x: hidden;
-
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .ambient-glow {
-            position: fixed;
-
-            top: 0;
-            left: 0;
-
-            width: 100vw;
-            height: 100vh;
-
-            pointer-events: none;
-
-            z-index: 0;
-
-            background:
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(99, 102, 241, 0.15) 0%,
-                    transparent 45%
-                ),
-
-                radial-gradient(
-                    circle at 85% 70%,
-                    rgba(6, 182, 212, 0.15) 0%,
-                    transparent 45%
-                );
-        }
-
-        nav {
-            position: fixed;
-
-            top: 18px;
-            left: 50%;
-
-            transform: translateX(-50%);
-
-            width: min(1120px, calc(100% - 48px));
-            height: 66px;
-
-            padding: 0 18px 0 24px;
-
-            display: flex;
-
-            align-items: center;
-
-            background: rgba(8, 14, 22, 0.92);
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-
-            border: 1px solid rgba(255, 255, 255, 0.07);
-
-            border-radius: 36px;
-
-            box-shadow:
-                0 15px 35px rgba(0, 0, 0, 0.35),
-                0 0 35px rgba(56, 189, 248, 0.05);
-
-            z-index: 1000;
-        }
-
-        .logo {
-            position: relative;
-
-            font-size: 1.25rem;
-
-            font-weight: 800;
-
-            color: #f8fafc;
-
-            letter-spacing: -0.6px;
-
-            white-space: nowrap;
-        }
-
-        .logo .dev {
-            color: #38bdf8;
-        }
-
-        .logo::after {
-            content: "";
-
-            position: absolute;
-
-            left: 0;
-            bottom: -20px;
-
-            width: 44px;
-            height: 2px;
-
-            background: #38bdf8;
-
-            border-radius: 10px;
-
-            box-shadow:
-                0 0 10px rgba(56, 189, 248, 0.5);
-        }
-
-        .nav-links {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            gap: 8px;
-
-            flex: 1;
-
-            list-style: none;
-
-            margin: 0 25px;
-        }
-
-        .nav-links a {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 9px 15px;
-
-            color: var(--text-muted);
-
-            text-decoration: none;
-
-            font-weight: 600;
-
-            font-size: 0.86rem;
-
-            border-radius: 22px;
-
-            transition: all 0.25s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-main);
-
-            background: rgba(255, 255, 255, 0.04);
-        }
-
-        .nav-links a.active {
-            color: #38bdf8;
-
-            background: rgba(56, 189, 248, 0.11);
-        }
-
-        .nav-actions {
-            display: flex;
-
-            align-items: center;
-
-            gap: 14px;
-        }
-
-        .service-btn {
-            padding: 9px 16px;
-
-            border-radius: 10px;
-
-            border:
-                1px solid rgba(56, 189, 248, 0.45);
-
-            color: #f8fafc;
-
-            text-decoration: none;
-
-            font-size: 0.84rem;
-
-            font-weight: 600;
-
-            transition: all 0.25s ease;
-        }
-
-        .service-btn:hover {
-            border-color: #38bdf8;
-
-            background:
-                rgba(56, 189, 248, 0.08);
-        }
-
-        .theme-btn {
-            width: 38px;
-            height: 38px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            border: none;
-
-            border-radius: 50%;
-
-            background: transparent;
-
-            color: #facc15;
-
-            font-size: 1rem;
-
-            cursor: pointer;
-
-            transition: all 0.25s ease;
-        }
-
-        .theme-btn:hover {
-            background:
-                rgba(250, 204, 21, 0.08);
-        }
-
-        header {
-            min-height: 100vh;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            padding: 8rem 5% 4rem;
-
-            position: relative;
-
-            z-index: 1;
-        }
-
-        .hero-container {
-            max-width: 900px;
-
-            text-align: center;
-        }
-
-        .badge {
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 0.5rem;
-
-            padding: 0.4rem 1rem;
-
-            border-radius: 50px;
-
-            background:
-                rgba(99, 102, 241, 0.1);
-
-            border:
-                1px solid rgba(99, 102, 241, 0.3);
-
-            color: #a5b4fc;
-
-            font-size: 0.85rem;
-
-            font-weight: 600;
-
-            margin-bottom: 1.5rem;
-        }
-
-        .badge-dot {
-            width: 8px;
-            height: 8px;
-
-            background-color: #10b981;
-
-            border-radius: 50%;
-
-            box-shadow: 0 0 10px #10b981;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-
-            font-weight: 800;
-
-            line-height: 1.15;
-
-            margin-bottom: 1.25rem;
-
-            letter-spacing: -1.5px;
-        }
-
-        h1 span {
-            background:
-                linear-gradient(
-                    135deg,
-                    #818cf8,
-                    #38bdf8
-                );
-
-            -webkit-background-clip: text;
-
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-
-            color: var(--text-muted);
-
-            margin-bottom: 2.5rem;
-
-            max-width: 650px;
-
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn-group {
-            display: flex;
-
-            gap: 1rem;
-
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 0.8rem 1.8rem;
-
-            border-radius: 12px;
-
-            font-weight: 600;
-
-            text-decoration: none;
-
-            transition: all 0.3s ease;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 0.5rem;
-
-            font-size: 0.95rem;
-        }
-
-        .btn-primary {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--accent)
-                );
-
-            color: #fff;
-
-            box-shadow:
-                0 10px 25px var(--primary-glow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-
-            box-shadow:
-                0 15px 30px var(--primary-glow);
-        }
-
-        .btn-outline {
-            background:
-                rgba(255, 255, 255, 0.05);
-
-            color: var(--text-main);
-
-            border:
-                1px solid var(--card-border);
-        }
-
-        .btn-outline:hover {
-            background:
-                rgba(255, 255, 255, 0.1);
-
-            transform: translateY(-2px);
-        }
-
-        section {
-            padding: 6rem 5%;
-
-            max-width: 1100px;
-
-            margin: 0 auto;
-
-            position: relative;
-
-            z-index: 1;
-        }
-
-        .section-title {
-            text-align: center;
-
-            margin-bottom: 3.5rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.2rem;
-
-            font-weight: 700;
-
-            letter-spacing: -0.5px;
-
-            margin-bottom: 0.5rem;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-
-            font-size: 1rem;
-        }
-
-        .skills-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(240px, 1fr));
-
-            gap: 1.5rem;
-        }
-
-        .skill-card {
-            background: var(--card-bg);
-
-            border:
-                1px solid var(--card-border);
-
-            padding: 1.75rem;
-
-            border-radius: 16px;
-
-            backdrop-filter: blur(10px);
-
-            transition: all 0.3s ease;
-        }
-
-        .skill-card:hover {
-            transform: translateY(-5px);
-
-            border-color:
-                rgba(99, 102, 241, 0.4);
-
-            box-shadow:
-                0 10px 30px
-                rgba(0, 0, 0, 0.3);
-        }
-
-        .skill-icon {
-            font-size: 2rem;
-
-            color: var(--accent);
-
-            margin-bottom: 1rem;
-        }
-
-        .skill-card h3 {
-            font-size: 1.15rem;
-
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-card p {
-            color: var(--text-muted);
-
-            font-size: 0.9rem;
-        }
-
-        .projects-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(320px, 1fr));
-
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-
-            border:
-                1px solid var(--card-border);
-
-            border-radius: 20px;
-
-            overflow: hidden;
-
-            backdrop-filter: blur(10px);
-
-            transition: all 0.3s ease;
-
-            display: flex;
-
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-
-            border-color:
-                rgba(99, 102, 241, 0.4);
-
-            box-shadow:
-                0 15px 35px
-                rgba(0, 0, 0, 0.4);
-        }
-
-        .project-body {
-            padding: 1.75rem;
-
-            display: flex;
-
-            flex-direction: column;
-
-            flex-grow: 1;
-        }
-
-        .project-tags {
-            display: flex;
-
-            gap: 0.5rem;
-
-            margin-bottom: 1rem;
-
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background:
-                rgba(255, 255, 255, 0.06);
-
-            color: var(--text-muted);
-
-            font-size: 0.75rem;
-
-            padding: 0.25rem 0.6rem;
-
-            border-radius: 6px;
-
-            font-weight: 500;
-        }
-
-        .project-body h3 {
-            font-size: 1.3rem;
-
-            margin-bottom: 0.75rem;
-        }
-
-        .project-body p {
-            color: var(--text-muted);
-
-            font-size: 0.95rem;
-
-            margin-bottom: 1.5rem;
-
-            flex-grow: 1;
-        }
-
-        .project-link {
-            color: #38bdf8;
-
-            text-decoration: none;
-
-            font-weight: 600;
-
-            font-size: 0.9rem;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 0.4rem;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            border-top:
-                1px solid var(--card-border);
-
-            padding: 3rem 5%;
-
-            text-align: center;
-
-            color: var(--text-muted);
-
-            font-size: 0.9rem;
-
-            position: relative;
-
-            z-index: 1;
-        }
-
-        footer a {
-            color: var(--text-main);
-
-            text-decoration: none;
-        }
-        body.light-mode {
-            --bg: #f8fafc;
-            --card-bg: rgba(255, 255, 255, 0.8);
-            --card-border: rgba(15, 23, 42, 0.10);
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-        }
-
-        body.light-mode nav {
-            background: rgba(255, 255, 255, 0.90);
-            border-color: rgba(15, 23, 42, 0.10);
-        
-            box-shadow:
-                0 15px 35px rgba(15, 23, 42, 0.10),
-                0 0 35px rgba(56, 189, 248, 0.05);
-        }
-
-        body.light-mode .logo {
-            color: #0f172a;
-        }
-        
-        body.light-mode .service-btn {
-            color: #0f172a;
-        }
-        
-        body.light-mode .theme-btn {
-            color: #f59e0b;
-        }
-
-        body.light-mode .ambient-glow {
-            background:
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(99, 102, 241, 0.10) 0%,
-                    transparent 45%
-                ),
-
-                radial-gradient(
-                    circle at 85% 70%,
-                    rgba(6, 182, 212, 0.10) 0%,
-                    transparent 45%
-                );
-        }
-
-        @media (max-width: 900px) {
-
-            nav {
-                width: calc(100% - 24px);
-
-                padding: 0 18px;
-            }
-
-            .nav-links {
-                gap: 2px;
-
-                margin: 0 10px;
-            }
-
-            .nav-links a {
-                padding: 8px 9px;
-
-                font-size: 0.78rem;
-            }
-
-            .service-btn {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            nav {
-                justify-content: space-between;
-            }
-        }
-
-    </style>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Huynh Viet Thang — Aspiring DFT Engineer | Digital IC Verification · FPGA</title>
+  <meta name="description" content="Huynh Viet Thang — Integrated Circuit Engineering student (HUFLIT, Dec 2026). Aspiring DFT Engineer focused on RTL design, verification, FPGA development and hardware validation." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='8' y='8' width='16' height='16' rx='2' fill='none' stroke='%2322D3EE' stroke-width='2'/%3E%3Crect x='13' y='13' width='6' height='6' fill='%2322D3EE'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
-    
 <body>
+  <a class="skip-link" href="#home">Skip to content</a>
 
-    <div class="ambient-glow"></div>
+  <!-- Subtle engineering grid backdrop -->
+  <div class="page-grid" aria-hidden="true"></div>
 
-    <nav>
-
-        <div class="logo">
-            huynhthang<span class="dev">.dft • dv</span>
-        </div>
-
-        <ul class="nav-links">
-
-            <li>
-                <a href="#about" class="active">
-                    Home
-                </a>
-            </li>
-
-            <li>
-                <a href="#skills">
-                    Experience
-                </a>
-            </li>
-
-            <li>
-                <a href="#projects">
-                    Showcase
-                </a>
-            </li>
-
-            <li>
-                <a href="#skills">
-                    Research
-                </a>
-            </li>
-
-            <li>
-                <a href="#contact">
-                    Contact
-                </a>
-            </li>
-
-        </ul>
-
-        <div class="nav-actions">
-
-            <a href="#projects" class="service-btn">
-                Services
-            </a>
-
-           <button class="theme-btn" id="themeToggle" type="button">
-                <i class="fa-solid fa-moon" id="themeIcon"></i>
-            </button>
-
-        </div>
-
+  <header class="site-nav" id="top">
+    <nav class="nav-inner" aria-label="Primary">
+      <a class="brand" href="#home" aria-label="Huynh Viet Thang — home">
+        <span class="brand-chip" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none"><rect x="7" y="7" width="12" height="12" rx="1.5" stroke="#22D3EE" stroke-width="1.6"/><rect x="11" y="11" width="4" height="4" fill="#22D3EE"/><path d="M10 7V4M13 7V4M16 7V4M10 22v-3M13 22v-3M16 22v-3M7 10H4M7 13H4M7 16H4M22 10h-3M22 13h-3M22 16h-3" stroke="#475569" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </span>
+        <span class="brand-text">huynhthang.dft</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#publications" class="nav-link">Publications</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a class="btn btn-small btn-ghost" href="assets/HuynhVietThang_DFT_CV.pdf" download>Curriculum Vitae</a>
+        <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Open menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
+  </header>
 
-    <header id="about">
-
-        <div class="hero-container">
-
-            <div class="badge">
-
-                <span class="badge-dot"></span>
-
-                Huynh Viet Thang
-
-            </div>
-
-            <h1>
-                Xin chao, toi la
-                <span>Huynh Viet Thang</span>
-            </h1>
-
-            <p class="hero-subtitle">
-                Portfolio dam me xay dung cac ung dung web hien dai,
-                toi uu trai nghiem nguoi dung va phat trien phan mem
-                chat luong cao.
-            </p>
-
-            <div class="btn-group">
-
-                <a href="#projects"
-                    class="btn btn-primary">
-
-                    <i class="fa-solid fa-code"></i>
-
-                    Xem du an
-
-                </a>
-
-                <a href="https://github.com/th389969-hash"
-                    target="_blank"
-                    class="btn btn-outline">
-
-                    <i class="fa-brands fa-github"></i>
-
-                    GitHub Profile
-
-                </a>
-
-            </div>
-
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-name">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span class="pulse" aria-hidden="true"></span> Design for Test Internship · Ho Chi Minh City</p>
+          <h1 id="hero-name">HUYNH VIET THANG</h1>
+          <p class="hero-role">Aspiring DFT Engineer<br /><span>FPGA</span></p>
+          <p class="hero-desc">Integrated Circuit Engineering student focused on digital design, RTL verification, FPGA development, and hardware validation, currently building deeper expertise in Design for Testability.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-outline" href="#publications">Research</a>
+            <a class="btn btn-outline" href="assets/HuynhVietThang_DFT_CV.pdf" download>Curriculum Vitae</a>
+          </div>
+          <div class="hero-social">
+            <a class="social-link" href="https://github.com/th389969-hash" target="_blank" rel="noopener" aria-label="GitHub profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.93c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/in/th%E1%BA%AFnghu%E1%BB%B3nh/" target="_blank" rel="noopener" aria-label="LinkedIn profile — replace with your exact URL">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.55V9h3.57v11.45Z"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a class="social-link" href="https://www.facebook.com/huynh.thang.515579/" target="_blank" rel="noopener" aria-label="Facebook profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.04V9.41c0-3.02 1.8-4.7 4.54-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.95.93-1.95 1.89v2.26h3.32l-.53 3.49h-2.79V24C19.61 23.09 24 18.1 24 12.07Z"/></svg>
+              <span>Facebook</span>
+            </a>
+            <a class="social-link" href="mailto:nghvthang@gmail.com" aria-label="Send email">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
+              <span>Email</span>
+            </a>
+          </div>
         </div>
 
-    </header>
-
-    <section id="skills">
-
-        <div class="section-title">
-
-            <h2>
-                Ky Nang & Cong Nghe
-            </h2>
-
-            <p>
-                Cac cong nghe toi su dung de xay dung
-                san pham phan mem
-            </p>
-
-        </div>
-
-        <div class="skills-grid">
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-
-                    <i class="fa-brands fa-html5"></i>
-
-                </div>
-
-                <h3>
-                    Frontend Development
-                </h3>
-
-                <p>
-                    HTML5, CSS3, JavaScript (ES6+),
-                    Responsive Web Design & Tailwind CSS.
-                </p>
-
+        <aside class="hero-panel reveal" aria-label="Engineering snapshot">
+          <div class="chip-card">
+            <div class="chip-photo">
+              <!-- Retained from existing project: images/profile.jpg (relative path, GitHub Pages safe) -->
+              <img src="images/profile.jpg" alt="Portrait of Huynh Viet Thang" loading="eager" onerror="this.closest('.chip-photo').classList.add('img-missing');this.remove()" />
+              <p class="img-fallback mono">images/profile.jpg</p>
             </div>
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-
-                    <i class="fa-brands fa-python"></i>
-
-                </div>
-
-                <h3>
-                    Backend & Scripting
-                </h3>
-
-                <p>
-                    Python, Node.js, RESTful APIs &
-                    xu ly tu dong hoa cong viec.
-                </p>
-
-            </div>
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-
-                    <i class="fa-brands fa-git-alt"></i>
-
-                </div>
-
-                <h3>
-                    Git & DevOps
-                </h3>
-
-                <p>
-                    Git, GitHub Actions, Cloudflare DNS &
-                    GitHub Pages Deployment.
-                </p>
-
-            </div>
-
-            <div class="skill-card">
-
-                <div class="skill-icon">
-
-                    <i class="fa-solid fa-database"></i>
-
-                </div>
-
-                <h3>
-                    Database & Tools
-                </h3>
-
-                <p>
-                    SQL, JSON Data structures,
-                    VS Code & cac cong cu phat trien phan mem.
-                </p>
-
-            </div>
-
-        </div>
-
+          </div>
+        </aside>
+      </div>
     </section>
 
-    <section id="projects">
-
-        <div class="section-title">
-
-            <h2>
-                Du An Noi Bat
-            </h2>
-
-            <p>
-                Mot so du an va san pham ca nhan
-                toi da phat trien
-            </p>
-
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="about-title">About Me</h2>
         </div>
-
-        <div class="projects-grid">
-
-            <div class="project-card">
-
-                <div class="project-body">
-
-                    <div class="project-tags">
-
-                        <span class="tag">
-                            GitHub Pages
-                        </span>
-
-                        <span class="tag">
-                            DNS
-                        </span>
-
-                        <span class="tag">
-                            is-a.dev
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        Personal Portfolio
-                    </h3>
-
-                    <p>
-                        Trang web ca nhan hien thi ho so nang luc,
-                        ky nang lap trinh va lien ket du an duoc
-                        tich hop ten mien tuy chinh
-                        huynhthang.is-a.dev.
-                    </p>
-
-                    <a href="https://huynhthang.is-a.dev"
-                        class="project-link">
-
-                        Truy cap du an
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <div class="project-card">
-
-                <div class="project-body">
-
-                    <div class="project-tags">
-
-                        <span class="tag">
-                            Automation
-                        </span>
-
-                        <span class="tag">
-                            Python
-                        </span>
-
-                        <span class="tag">
-                            GitHub API
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        Subdomain Auto-Register
-                    </h3>
-
-                    <p>
-                        He thong script tu dong hoa quy trinh
-                        Fork repository, khoi tao cau hinh DNS JSON
-                        va gui Pull Request dang ky ten mien phu
-                        tu dong.
-                    </p>
-
-                    <a href="https://github.com/th389969-hash/register"
-                        target="_blank"
-                        class="project-link">
-
-                        Xem tren GitHub
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </a>
-
-                </div>
-
-            </div>
-
+        <div class="about-grid">
+          <div class="card reveal">
+            <p>I am an <strong>Integrated Circuit Engineering student</strong> at the University of Foreign Languages – Information Technology (HUFLIT), Ho Chi Minh City, interested in <strong>Design for Testability, Digital IC Verification, RTL Design, FPGA Development,</strong> and <strong>Hardware Validation</strong>.</p>
+            <p class="muted">My previous research and project experience as a member of Tinh Vi Lab includes FPGA-based real-time hardware systems, RTL modules and testbench development, sensor interfacing, hardware validation, edge AI / computer-vision deployment, and technical research with academic publications.</p>
+            <p class="muted small">Positioning note: I present DFT as my <em>career direction I am actively studying</em> — not as professional experience. My demonstrated strengths are Verilog, digital logic, testbenches, waveform debugging, FPGA bring-up, and system validation.</p>
+          </div>
+          <ul class="about-list reveal" aria-label="Profile highlights">
+            <li><span class="mono">degree</span> Undergraduate — Kỹ thuật Vi mạch (Integrated Circuit Engineering), HUFLIT · Expected Dec 2026</li>
+            <li><span class="mono">gpa</span> 3.20 / 4.0 · Student Endeavor Scholarship 2024–2025 <button class="icon-btn" id="transcriptOpen" aria-label="View academic transcript" title="View transcript"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></button></li>
+          </ul>
         </div>
-
+      </div>
     </section>
 
-    <footer id="contact">
+    <!-- ============ TRANSCRIPT MODAL ============ -->
+    <div class="modal-overlay" id="transcriptModal" hidden>
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="transcriptTitle">
+        <div class="modal-head">
+          <div>
+            <h3 id="transcriptTitle">🏆 <span data-vi="Kết quả học tập" data-en="Academic Performance">Kết quả học tập</span></h3>
+            <p class="muted small">HUFLIT · <span data-vi="Kỹ thuật Vi mạch · Kết quả 2025–2026 (HK01–HK03)" data-en="Integrated Circuit Engineering · 2025–2026 results (HK01–HK03)">Kỹ thuật Vi mạch · Kết quả 2025–2026 (HK01–HK03)</span></p>
+          </div>
+          <div class="modal-tools">
+            <button class="lang-btn" id="langToggle" type="button">English</button>
+            <button class="modal-close" id="transcriptClose" type="button" aria-label="Close transcript">×</button>
+          </div>
+        </div>
 
-        <p>
-            © 2026 Huynh Viet Thang.
-            Da dang ky ten mien tai
+        <div class="modal-stats">
+          <div class="stat"><span class="mono" data-vi="tích lũy (toàn khóa)" data-en="cumulative (all years)">tích lũy (toàn khóa)</span><strong>3.20</strong></div>
+          <div class="stat"><span class="mono" data-vi="năm học 2025–2026" data-en="year 2025–2026">năm học 2025–2026</span><strong>3.65</strong></div>
+          <div class="stat"><span class="mono" data-vi="tín chỉ tích lũy" data-en="earned credits">tín chỉ tích lũy</span><strong>138</strong></div>
+        </div>
 
-            <a href="https://huynhthang.is-a.dev"
-                target="_blank">
-                huynhthang.is-a.dev
-            </a>.
-        </p>
+        <div class="modal-sem">
+          <div class="sem-head"><span class="mono" data-vi="học kỳ: hk01 (2025–2026)" data-en="semester: hk01 (2025–2026)">học kỳ: hk01 (2025–2026)</span><span class="mono">GPA 3.55 · Cumul. 3.07</span></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Code</th><th data-vi="Môn học" data-en="Course">Môn học</th><th data-vi="Tín chỉ" data-en="Credits">Tín chỉ</th><th data-vi="Điểm (hệ 10)" data-en="Grade (10-scale)">Điểm (hệ 10)</th><th data-vi="Kết quả" data-en="Result">Kết quả</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1010792</td><td data-vi="Giáo dục thể chất 1 (Bơi lội 1)" data-en="Physical Education 1 (Swimming 1)">Giáo dục thể chất 1 (Bơi lội 1)</td><td>2.0</td><td class="grade">8.8</td><td class="result">A</td></tr>
+              <tr><td class="mono">1230384</td><td data-vi="Lập trình trên thiết bị di động" data-en="Mobile Device Programming">Lập trình trên thiết bị di động</td><td>4.0</td><td class="grade">8.4</td><td class="result">B+</td></tr>
+              <tr><td class="mono">1250013</td><td data-vi="Tiếng Anh chuyên ngành 1" data-en="Technical English 1">Tiếng Anh chuyên ngành 1</td><td>3.0</td><td class="grade">6.5</td><td class="result">C+</td></tr>
+              <tr><td class="mono">1250084</td><td data-vi="Phân tích và thiết kế phần mềm" data-en="Software Analysis and Design">Phân tích và thiết kế phần mềm</td><td>4.0</td><td class="grade">8.9</td><td class="result">A</td></tr>
+              <tr><td class="mono">1262064</td><td data-vi="Lập trình nhúng (Embedded programing)" data-en="Embedded Programming">Lập trình nhúng (Embedded programing)</td><td>4.0</td><td class="grade">9.0</td><td class="result">A+</td></tr>
+              <tr><td class="mono">1262084</td><td data-vi="Công nghệ cảm biến" data-en="Sensor Technology">Công nghệ cảm biến</td><td>4.0</td><td class="grade">8.2</td><td class="result">B+</td></tr>
+            </tbody>
+          </table></div>
+          <p class="sem-foot mono" data-vi="Tín chỉ tính GPA: 19 · GPA: 3.55 · Tích lũy: 3.07" data-en="GPA credits: 19 · GPA: 3.55 · Cumulative: 3.07">Tín chỉ tính GPA: 19 · GPA: 3.55 · Tích lũy: 3.07</p>
+        </div>
 
-        <p style="
-            margin-top: 0.5rem;
-            color: #64748b;
-        ">
-            Built with ❤️ & hosted on GitHub Pages
-        </p>
+        <div class="modal-sem">
+          <div class="sem-head"><span class="mono" data-vi="học kỳ: hk02 (2025–2026)" data-en="semester: hk02 (2025–2026)">học kỳ: hk02 (2025–2026)</span><span class="mono">GPA 3.55 · Cumul. 3.14</span></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Code</th><th data-vi="Môn học" data-en="Course">Môn học</th><th data-vi="Tín chỉ" data-en="Credits">Tín chỉ</th><th data-vi="Điểm (hệ 10)" data-en="Grade (10-scale)">Điểm (hệ 10)</th><th data-vi="Kết quả" data-en="Result">Kết quả</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1010913</td><td data-vi="Giáo dục thể chất 2 (Bơi lội 2)" data-en="Physical Education 2 (Swimming 2)">Giáo dục thể chất 2 (Bơi lội 2)</td><td>3.0</td><td class="grade">7.8</td><td class="result">B</td></tr>
+              <tr><td class="mono">1230544</td><td data-vi="Internet vạn vật" data-en="Internet of Things">Internet vạn vật</td><td>4.0</td><td class="grade">9.2</td><td class="result">A+</td></tr>
+              <tr><td class="mono">1250023</td><td data-vi="Tiếng Anh chuyên ngành 2" data-en="Technical English 2">Tiếng Anh chuyên ngành 2</td><td>3.0</td><td class="grade">6.8</td><td class="result">C+</td></tr>
+              <tr><td class="mono">1262074</td><td data-vi="Lập trình Vi điều khiển" data-en="Microcontroller Programming">Lập trình Vi điều khiển</td><td>4.0</td><td class="grade">7.5</td><td class="result">B</td></tr>
+              <tr><td class="mono">1262104</td><td data-vi="Kỹ thuật robotics" data-en="Robotics Engineering">Kỹ thuật robotics</td><td>4.0</td><td class="grade">10.0</td><td class="result">A+</td></tr>
+              <tr><td class="mono">1262114</td><td data-vi="Chuyên đề Hệ thống nhúng" data-en="Special Topics in Embedded Systems">Chuyên đề Hệ thống nhúng</td><td>4.0</td><td class="grade">10.0</td><td class="result">A+</td></tr>
+            </tbody>
+          </table></div>
+          <p class="sem-foot mono" data-vi="Tín chỉ tính GPA: 19 · GPA: 3.55 · Tích lũy: 3.14" data-en="GPA credits: 19 · GPA: 3.55 · Cumulative: 3.14">Tín chỉ tính GPA: 19 · GPA: 3.55 · Tích lũy: 3.14</p>
+        </div>
 
-    </footer>
+        <div class="modal-sem">
+          <div class="sem-head"><span class="mono" data-vi="học kỳ: hk03 (2025–2026)" data-en="semester: hk03 (2025–2026)">học kỳ: hk03 (2025–2026)</span><span class="mono">GPA 4.00 · Cumul. 3.20</span></div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Code</th><th data-vi="Môn học" data-en="Course">Môn học</th><th data-vi="Tín chỉ" data-en="Credits">Tín chỉ</th><th data-vi="Điểm (hệ 10)" data-en="Grade (10-scale)">Điểm (hệ 10)</th><th data-vi="Kết quả" data-en="Result">Kết quả</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">1230166</td><td data-vi="Khóa luận tốt nghiệp" data-en="Graduation Thesis">Khóa luận tốt nghiệp</td><td>6.0</td><td class="grade">9.0</td><td class="result">A+</td></tr>
+              <tr><td class="mono">1262094</td><td data-vi="Hệ thống thông minh" data-en="Intelligent Systems">Hệ thống thông minh</td><td>4.0</td><td class="grade">8.5</td><td class="result">A</td></tr>
+            </tbody>
+          </table></div>
+          <p class="sem-foot mono" data-vi="Tín chỉ tính GPA: 10 · GPA: 4.00 · Tích lũy: 3.20" data-en="GPA credits: 10 · GPA: 4.00 · Cumulative: 3.20">Tín chỉ tính GPA: 10 · GPA: 4.00 · Tích lũy: 3.20</p>
+        </div>
 
-    <script>
-        const themeToggle = document.getElementById("themeToggle");
-        const themeIcon = document.getElementById("themeIcon");
+        <div class="modal-upcoming">
+          <p class="mono" data-vi="sắp tới · hk01 (2026–2027)" data-en="upcoming · hk01 (2026–2027)">sắp tới · hk01 (2026–2027)</p>
+          <p><strong data-vi="Thực tập công nghiệp" data-en="Industrial Internship">Thực tập công nghiệp</strong> <span class="muted mono">· 1230633 · 3.0</span></p>
+          <p class="muted small" data-vi="Chưa có điểm." data-en="Grade not published yet.">Chưa có điểm.</p>
+        </div>
+      </div>
+    </div>
 
-        const savedTheme = localStorage.getItem("theme");
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="projects-title">Projects</h2>
+        </div>
 
-        if (savedTheme === "light") {
-            document.body.classList.add("light-mode");
-            themeIcon.className = "fa-solid fa-sun";
-        } else {
-            themeIcon.className = "fa-solid fa-moon";
-        }
+        <article class="card project project-featured reveal" aria-labelledby="p-cache-title">
+          <div class="project-main">
+            <div class="project-copy">
+              <h3 id="p-cache-title">L1 Data Cache Controller — RTL Design and Functional Verification</h3>
+              <p class="muted">1 KB direct-mapped L1 Data Cache controller for a single CPU interface, described in Verilog HDL at RTL level and functionally verified by directed-testbench simulation in AMD Vivado.</p>
+              <h4>My contribution</h4>
+              <ul class="tight">
+                <li>RTL architecture: 32-bit address decode (tag / index / offset), valid, tag and data arrays, hit logic</li>
+                <li>Cache policies: read-allocate, write-through, write-no-allocate</li>
+                <li>Directed testbench + behavioral simulation — 5/5 scenarios pass (Reset, Read Hit/Miss, Write Hit/Miss)</li>
+              </ul>
+              <ol class="fsm-flow mono" aria-label="Control FSM states">
+                <li>IDLE</li><li>COMPARE</li><li>ALLOCATE</li><li>WRITE_MEM</li>
+              </ol>
+              <ul class="tags" aria-label="Technologies">
+                <li>Verilog</li><li>RTL</li><li>FSM</li><li>Testbench</li><li>Vivado</li><li>Waveform Simulation</li><li>Computer Architecture</li>
+              </ul>
+              <ol class="flow mono" aria-label="Project flow">
+                <li>Spec</li><li>Architecture</li><li>RTL</li><li>Testbench</li><li>Simulation</li><li>Results</li>
+              </ol>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
 
-        themeToggle.addEventListener("click", () => {
-            const isLightMode = document.body.classList.toggle("light-mode");
+    <!-- ============ PUBLICATIONS ============ -->
+    <section class="section section-alt" id="publications" aria-labelledby="pub-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <h2 id="pub-title">Research &amp; Publications</h2>
+        </div>
+        <div class="pub-list">
+          <article class="pub-card reveal">
+            <div class="pub-top">
+              <span class="pub-badge"><strong>ACM</strong> Published</span>
+              <div class="pub-btns">
+                <a class="pub-btn" href="https://dl.acm.org/doi/10.1145/3815970.3815972" target="_blank" rel="noopener">ACM DL</a>
+                <a class="pub-btn dl" href="assets/papers/MLCI2026-ACM-3815972.pdf" download><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16"/></svg>Download</a>
+              </div>
+            </div>
+            <p class="pub-conf">● MLCI 2026 &nbsp;◆&nbsp; ACM · April 18–20, 2026 · Ho Chi Minh City, Vietnam</p>
+            <h3>An Android-Based Edge Device for Footwear Defect Inspection – Toward a Portable yet Powerful Approach</h3>
+            <p class="pub-authors">Truong Gia Lam, Nguyen Minh Quang, Nguyen Thach Thanh, <strong>Huynh Viet Thang</strong>, Le Khac Kha, Phan Minh Thuan, Pham Nhi Nguyen, and Pham Cong Thien</p>
+            <div class="pub-abs">
+              <p class="mono">ABSTRACT</p>
+              <p>Modern deep learning models achieve high accuracy but remain impractical for factory deployment due to computational demands requiring expensive GPU hardware. We present an end-to-end system for footwear defect inspection through mobile edge deployment. Through systematic comparison of architectures and resolutions, we identify an optimal configuration achieving 91.8% precision with real-time inference. Aggressive compression reduces size by 74% (44.8 MB to 11.5 MB) while maintaining performance, enabling deployment on commodity Android devices.</p>
+            </div>
+            <ul class="pub-keys"><li>Footwear Defect Inspection</li><li>Mobile Deployment</li><li>INT8 Quantization</li><li>Edge Computing</li><li>Quality Control</li></ul>
+            <p class="pub-doi mono">DOI: 10.1145/3815970.3815972</p>
+          </article>
 
-            if (isLightMode) {
-                themeIcon.className = "fa-solid fa-sun";
-                localStorage.setItem("theme", "light");
-            } else {
-                themeIcon.className = "fa-solid fa-moon";
-                localStorage.setItem("theme", "dark");
-            }
-        });
-    </script>
+          <article class="pub-card reveal">
+            <div class="pub-top">
+              <span class="pub-badge"><strong>SPIE</strong> Published</span>
+              <div class="pub-btns">
+                <a class="pub-btn" href="https://www.spiedigitallibrary.org/conference-proceedings-of-spie/14163/3110583/Toward-an-efficient-and-compact-approach-for-footwear-defect-inspection/10.1117/12.3110583.full" target="_blank" rel="noopener">SPIE</a>
+                <a class="pub-btn dl" href="assets/papers/IPMV2026-SPIE-14163OC.pdf" download><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16"/></svg>Download</a>
+              </div>
+            </div>
+            <p class="pub-conf">● IPMV 2026 &nbsp;◆&nbsp; SPIE · Proc. Vol. 14163 · Art. 14163OC</p>
+            <h3>Toward an Efficient and Compact Approach for Footwear Defect Inspection Using Self-Enhancement and Data-Driven Hyperparameters</h3>
+            <p class="pub-authors"><strong>Huynh Thang</strong>, Phuc Do, Binh Nguyen, Kha Le, Ky Pham, Quan Phan, Thuan Phan, Nguyen Pham, and Thien Pham</p>
+            <div class="pub-abs">
+              <p class="mono">ABSTRACT</p>
+              <p>Footwear defect inspection is critical for quality control but remains challenging due to data scarcity and class imbalance in industrial environments. This paper proposes a domain-specific approach utilizing a YOLO-based model enhanced with data-driven hyperparameter tuning and tailored augmentation. We construct a custom dataset specifically for stitching and bonding defects and demonstrate an end-to-end framework suitable for real-time edge deployment. Experimental results achieve 94.1% mAP@50 with an inference speed of 89 ms — increasing Precision by 5.91%, Recall by 7.02%, and mAP@90 by 21.55% compared to baseline configurations.</p>
+            </div>
+            <ul class="pub-keys"><li>Footwear Defect Inspection</li><li>Imbalanced Dataset</li><li>Data-Driven Hyperparameters</li><li>YOLO</li><li>Edge Deployment</li></ul>
+            <p class="pub-doi mono">DOI: 10.1117/12.3110583</p>
+          </article>
 
+          <article class="pub-card reveal">
+            <div class="pub-top">
+              <span class="pub-badge"><strong>Springer</strong> Published</span>
+              <div class="pub-btns">
+                <a class="pub-btn" href="https://link.springer.com/chapter/10.1007/978-3-031-98167-8_21" target="_blank" rel="noopener">Springer</a>
+                <a class="pub-btn dl" href="https://link.springer.com/chapter/10.1007/978-3-031-98167-8_21" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 20h16"/></svg>Download</a>
+              </div>
+            </div>
+            <p class="pub-conf">● ICCIES 2025 &nbsp;◆&nbsp; Springer · pp. 281–291</p>
+            <h3>Efficient FPGA-Based Hardware Noise Filtering and Real-Time Motion Detection Using RE200B Sensor on Trion T8 BGA81</h3>
+            <p class="pub-authors">Phuc Do, Chan Nguyen, Binh Nguyen, Tuong Le, <strong>Thang Huynh</strong>, Thanh Nguyen, Sang Ha, Trung Nguyen, Tho Nguyen, Thien Pham, and Tho Quan</p>
+            <div class="pub-abs">
+              <p class="mono">ABSTRACT</p>
+              <p>Presents a Verilog-based FPGA architecture on the Efinix Trion T8 BGA81 for real-time RE200B sensor signal processing, covering RTL modules and testbenches for noise filtering and motion detection, waveform simulation and debugging, FPGA integration and system-level hardware validation.</p>
+            </div>
+            <ul class="pub-keys"><li>Verilog</li><li>RTL</li><li>FPGA</li><li>Efinix Trion T8</li><li>Testbench</li><li>Signal Processing</li></ul>
+            <p class="pub-doi mono">DOI: 10.1007/978-3-031-98167-8_21</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 Huynh Viet Thang · Ho Chi Minh City · Aspiring DFT Engineer</p>
+      <p class="mono small muted">RTL · Verification · FPGA — built with semantic HTML + vanilla CSS/JS · hosted on GitHub Pages</p>
+      <a class="to-top mono" href="#home">↑ back to top</a>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
-
 </html>
